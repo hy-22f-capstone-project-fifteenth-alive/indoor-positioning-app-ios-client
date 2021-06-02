@@ -7,7 +7,7 @@ This view displays IMDF level names as vertically-stacked buttons.
 
 import UIKit
 
-@objc protocol LevelPickerDelegate: class {
+@objc protocol LevelPickerDelegate: AnyObject {
     func selectedLevelDidChange(selectedIndex: Int)
 }
 
