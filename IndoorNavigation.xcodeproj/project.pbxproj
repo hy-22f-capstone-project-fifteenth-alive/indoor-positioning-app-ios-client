@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4306A889223825C9005E7E97 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306A888223825C9005E7E97 /* Styles.swift */; };
 		4353A0932228CD9600F2977B /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 4353A0922228CD9500F2977B /* IMDFData */; };
 		436217FD2256A4800075E16C /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436217FC2256A4800075E16C /* LocalizedName.swift */; };
+		57BB37002A0A731800C522C6 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 57BB36FF2A0A731800C522C6 /* Zip */; };
 		7E4BF84722160D8B00AE3916 /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BF84622160D8B00AE3916 /* Amenity.swift */; };
 		7E4CC6C82242206000724B06 /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4CC6C72242206000724B06 /* PointAnnotationView.swift */; };
 		7E61CF00215E1FF500EAD172 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */; };
@@ -33,14 +34,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E4DF414B6CA3700FEC8FA74 /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		0E4DF414B6CA3700FEC8FA74 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		4306A888223825C9005E7E97 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		4353A0922228CD9500F2977B /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		436217FC2256A4800075E16C /* LocalizedName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedName.swift; sourceTree = "<group>"; };
-		75E7ED09E5BC9AB9BC056378 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
+		75E7ED09E5BC9AB9BC056378 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7E4BF84622160D8B00AE3916 /* Amenity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		7E4CC6C72242206000724B06 /* PointAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
-		7E61CEFC215E1FF500EAD172 /* Dinoseum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinoseum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E61CEFC215E1FF500EAD172 /* IndoorNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndoorNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E61CF01215E1FF500EAD172 /* IndoorMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorMapViewController.swift; sourceTree = "<group>"; };
 		7E61CF04215E1FF500EAD172 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57BB37002A0A731800C522C6 /* Zip in Frameworks */,
 				7E6509D121B06864005D2B6C /* MapKit.framework in Frameworks */,
 				7E61CF13215E20B700EAD172 /* CoreLocation.framework in Frameworks */,
 			);
@@ -81,7 +83,6 @@
 			children = (
 				75E7ED09E5BC9AB9BC056378 /* LICENSE.txt */,
 			);
-			name = LICENSE;
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
@@ -99,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				F77FB50C2276FE70006F9FD0 /* README.md */,
-				7E61CEFE215E1FF500EAD172 /* Dinoseum */,
+				7E61CEFE215E1FF500EAD172 /* IndoorNavigation */,
 				7E61CEFD215E1FF500EAD172 /* Products */,
 				7E61CF11215E20B600EAD172 /* Frameworks */,
 				F786F26322679FBB006CBEC1 /* LICENSE */,
@@ -111,12 +112,12 @@
 		7E61CEFD215E1FF500EAD172 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7E61CEFC215E1FF500EAD172 /* Dinoseum.app */,
+				7E61CEFC215E1FF500EAD172 /* IndoorNavigation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7E61CEFE215E1FF500EAD172 /* Dinoseum */ = {
+		7E61CEFE215E1FF500EAD172 /* IndoorNavigation */ = {
 			isa = PBXGroup;
 			children = (
 				7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */,
@@ -131,7 +132,7 @@
 				7E61CF0B215E1FF600EAD172 /* Info.plist */,
 				7E61CF06215E1FF600EAD172 /* Assets.xcassets */,
 			);
-			path = Dinoseum;
+			path = IndoorNavigation;
 			sourceTree = "<group>";
 		};
 		7E61CF11215E20B600EAD172 /* Frameworks */ = {
@@ -178,9 +179,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7E61CEFB215E1FF500EAD172 /* Dinoseum */ = {
+		7E61CEFB215E1FF500EAD172 /* IndoorNavigation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7E61CF0E215E1FF600EAD172 /* Build configuration list for PBXNativeTarget "Dinoseum" */;
+			buildConfigurationList = 7E61CF0E215E1FF600EAD172 /* Build configuration list for PBXNativeTarget "IndoorNavigation" */;
 			buildPhases = (
 				7E61CEF8215E1FF500EAD172 /* Sources */,
 				7E61CEF9215E1FF500EAD172 /* Frameworks */,
@@ -190,9 +191,12 @@
 			);
 			dependencies = (
 			);
-			name = Dinoseum;
+			name = IndoorNavigation;
+			packageProductDependencies = (
+				57BB36FF2A0A731800C522C6 /* Zip */,
+			);
 			productName = IMDF_Sample_Code;
-			productReference = 7E61CEFC215E1FF500EAD172 /* Dinoseum.app */;
+			productReference = 7E61CEFC215E1FF500EAD172 /* IndoorNavigation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +215,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7E61CEF7215E1FF500EAD172 /* Build configuration list for PBXProject "Dinoseum" */;
+			buildConfigurationList = 7E61CEF7215E1FF500EAD172 /* Build configuration list for PBXProject "IndoorNavigation" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -220,11 +224,14 @@
 				Base,
 			);
 			mainGroup = 7E61CEF3215E1FF500EAD172;
+			packageReferences = (
+				57BB36FE2A0A731800C522C6 /* XCRemoteSwiftPackageReference "Zip" */,
+			);
 			productRefGroup = 7E61CEFD215E1FF500EAD172 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7E61CEFB215E1FF500EAD172 /* Dinoseum */,
+				7E61CEFB215E1FF500EAD172 /* IndoorNavigation */,
 			);
 		};
 /* End PBXProject section */
@@ -420,13 +427,13 @@
 					"$(inherited)",
 					"$(SDKROOT)$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = Dinoseum/Info.plist;
+				INFOPLIST_FILE = IndoorNavigation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.dinoseum${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.indoornavigation${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -444,13 +451,13 @@
 					"$(inherited)",
 					"$(SDKROOT)$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = Dinoseum/Info.plist;
+				INFOPLIST_FILE = IndoorNavigation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.dinoseum${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.indoornavigation${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -460,7 +467,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7E61CEF7215E1FF500EAD172 /* Build configuration list for PBXProject "Dinoseum" */ = {
+		7E61CEF7215E1FF500EAD172 /* Build configuration list for PBXProject "IndoorNavigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7E61CF0C215E1FF600EAD172 /* Debug */,
@@ -469,7 +476,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7E61CF0E215E1FF600EAD172 /* Build configuration list for PBXNativeTarget "Dinoseum" */ = {
+		7E61CF0E215E1FF600EAD172 /* Build configuration list for PBXNativeTarget "IndoorNavigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7E61CF0F215E1FF600EAD172 /* Debug */,
@@ -479,6 +486,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57BB36FE2A0A731800C522C6 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57BB36FF2A0A731800C522C6 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57BB36FE2A0A731800C522C6 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7E61CEF4215E1FF500EAD172 /* Project object */;
 }

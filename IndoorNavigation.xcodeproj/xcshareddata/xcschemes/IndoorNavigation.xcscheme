@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7E61CEFB215E1FF500EAD172"
-               BuildableName = "Dinoseum.app"
-               BlueprintName = "Dinoseum"
-               ReferencedContainer = "container:Dinoseum.xcodeproj">
+               BuildableName = "IndoorNavigation.app"
+               BlueprintName = "IndoorNavigation"
+               ReferencedContainer = "container:IndoorNavigation.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,17 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E61CEFB215E1FF500EAD172"
-            BuildableName = "Dinoseum.app"
-            BlueprintName = "Dinoseum"
-            ReferencedContainer = "container:Dinoseum.xcodeproj">
+            BuildableName = "IndoorNavigation.app"
+            BlueprintName = "IndoorNavigation"
+            ReferencedContainer = "container:IndoorNavigation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E61CEFB215E1FF500EAD172"
-            BuildableName = "Dinoseum.app"
-            BlueprintName = "Dinoseum"
-            ReferencedContainer = "container:Dinoseum.xcodeproj">
+            BuildableName = "IndoorNavigation.app"
+            BlueprintName = "IndoorNavigation"
+            ReferencedContainer = "container:IndoorNavigation.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E61CEFB215E1FF500EAD172"
-            BuildableName = "Dinoseum.app"
-            BlueprintName = "Dinoseum"
-            ReferencedContainer = "container:Dinoseum.xcodeproj">
+            BuildableName = "IndoorNavigation.app"
+            BlueprintName = "IndoorNavigation"
+            ReferencedContainer = "container:IndoorNavigation.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -8,6 +8,7 @@ The main view controller.
 import UIKit
 import CoreLocation
 import MapKit
+import Zip
 
 class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerDelegate {
     @IBOutlet var mapView: MKMapView!
@@ -33,7 +34,8 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
         self.mapView.delegate = self
         self.mapView.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: pointAnnotationViewIdentifier)
         self.mapView.register(LabelAnnotationView.self, forAnnotationViewWithReuseIdentifier: labelAnnotationViewIdentifier)
-
+        
+        self.loadImdfFileData()
         // Decode the IMDF data. In this case, IMDF data is stored locally in the current bundle.
         let imdfDirectory = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
         do {
@@ -69,6 +71,62 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
         
         // Setup the level picker with the shortName of each level
         setupLevelPicker()
+    }
+    
+    private func loadImdfFileData() {
+        // 파일 매니저 생성
+        let fileManager: FileManager = FileManager.default
+        
+        // 파일 시스템 내 목표 디렉토리 경로 설정
+        let documentsPath: URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let directoryPath: URL = documentsPath.appendingPathComponent("IMDFData")
+        
+        let destinationFileUrl = directoryPath.appendingPathComponent("test.imdf")
+        
+        do {
+            // 아까 만든 디렉토리 경로에 디렉토리 생성 (폴더가 만들어진다.)
+            try fileManager.createDirectory(at: directoryPath, withIntermediateDirectories: false, attributes: nil)
+        } catch let e {
+            print(e.localizedDescription)
+        }
+
+        let fileURL = URL(string: "http://localhost:8080/api/v1/venue/1/map")
+        
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig)
+     
+        let request = URLRequest(url:fileURL!)
+        
+        let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
+            if let tempLocalUrl = tempLocalUrl, error == nil {
+                // Success
+                if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                    print("Successfully downloaded. Status code: \(statusCode)")
+                }
+                
+                do {
+                    try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
+                } catch (let writeError) {
+                    print("Error creating a file \(destinationFileUrl) : \(writeError)")
+                }
+                
+            } else {
+                print("Error took place while downloading a file. Error description: %@", error?.localizedDescription ?? "None");
+            }
+        }
+        task.resume()
+        
+        do {
+            let filePath = Bundle.main.url(forResource: destinationFileUrl.absoluteString, withExtension: "zip")
+            if filePath != nil {
+                let unzipDirectory = try Zip.quickUnzipFile(filePath!) // Unzip
+            } else {
+                print("filePath Not Exists")
+            }
+        }
+        catch {
+          print("Something went wrong")
+        }
     }
     
     private func showFeaturesForOrdinal(_ ordinal: Int) {
