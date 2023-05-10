@@ -11,6 +11,7 @@
 		4353A0932228CD9600F2977B /* IMDFData in Resources */ = {isa = PBXBuildFile; fileRef = 4353A0922228CD9500F2977B /* IMDFData */; };
 		436217FD2256A4800075E16C /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436217FC2256A4800075E16C /* LocalizedName.swift */; };
 		57BB37002A0A731800C522C6 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 57BB36FF2A0A731800C522C6 /* Zip */; };
+		57BCF5942A0B788F00C6DBC0 /* FileDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */; };
 		7E4BF84722160D8B00AE3916 /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BF84622160D8B00AE3916 /* Amenity.swift */; };
 		7E4CC6C82242206000724B06 /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4CC6C72242206000724B06 /* PointAnnotationView.swift */; };
 		7E61CF00215E1FF500EAD172 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		4306A888223825C9005E7E97 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		4353A0922228CD9500F2977B /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		436217FC2256A4800075E16C /* LocalizedName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedName.swift; sourceTree = "<group>"; };
+		57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloadError.swift; sourceTree = "<group>"; };
 		75E7ED09E5BC9AB9BC056378 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7E4BF84622160D8B00AE3916 /* Amenity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		7E4CC6C72242206000724B06 /* PointAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */,
 				7EEBCE8A21AD3B0D00FF4181 /* IMDFDecoder.swift */,
 				7E61CF01215E1FF500EAD172 /* IndoorMapViewController.swift */,
+				57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */,
 				4306A888223825C9005E7E97 /* Styles.swift */,
 				7E4CC6C9224222C400724B06 /* Views */,
 				7EEA2CBA21CBF218005539F2 /* IMDFModel */,
@@ -269,6 +272,7 @@
 				7EEA2CC221CBF3BB005539F2 /* Level.swift in Sources */,
 				7EEBCE8B21AD3B0E00FF4181 /* IMDFDecoder.swift in Sources */,
 				7EEA2CBE21CBF2DF005539F2 /* Unit.swift in Sources */,
+				57BCF5942A0B788F00C6DBC0 /* FileDownloadError.swift in Sources */,
 				7EEA2CBC21CBF241005539F2 /* Occupant.swift in Sources */,
 				F712C6332262725500F3AFFB /* Feature.swift in Sources */,
 				7E61CF00215E1FF500EAD172 /* AppDelegate.swift in Sources */,
@@ -349,7 +353,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -405,7 +409,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;

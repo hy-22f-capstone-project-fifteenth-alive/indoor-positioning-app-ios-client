@@ -10,6 +10,7 @@ import CoreLocation
 import MapKit
 import Zip
 
+@available(iOS 15.0, *)
 class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerDelegate {
     @IBOutlet var mapView: MKMapView!
     private let locationManager = CLLocationManager()
@@ -24,7 +25,6 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
     let labelAnnotationViewIdentifier = "LabelAnnotationView"
     
     // MARK: - View life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,97 +35,85 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
         self.mapView.register(PointAnnotationView.self, forAnnotationViewWithReuseIdentifier: pointAnnotationViewIdentifier)
         self.mapView.register(LabelAnnotationView.self, forAnnotationViewWithReuseIdentifier: labelAnnotationViewIdentifier)
         
-        self.loadImdfFileData()
-        // Decode the IMDF data. In this case, IMDF data is stored locally in the current bundle.
-        let imdfDirectory = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
-        do {
-            let imdfDecoder = IMDFDecoder()
-            venue = try imdfDecoder.decode(imdfDirectory)
-        } catch let error {
-            print(error)
-        }
-        
-        // You might have multiple levels per ordinal. A selected level picker item displays all levels with the same ordinal.
-        if let levelsByOrdinal = self.venue?.levelsByOrdinal {
-            let levels = levelsByOrdinal.mapValues { (levels: [Level]) -> [Level] in
-                // Choose indoor level over outdoor level
-                if let level = levels.first(where: { $0.properties.outdoor == false }) {
-                    return [level]
-                } else {
-                    return [levels.first!]
-                }
-            }.flatMap({ $0.value })
+        Task {
+            let unzipDirectory = try await self.fetchImdfFileData()
+            do {
+                let imdfDecoder = IMDFDecoder()
+                venue = try imdfDecoder.decode(unzipDirectory.appendingPathComponent("IMDFData"))
+            } catch let error {
+                print(error)
+            }
             
-            // Sort levels by their ordinal numbers
-            self.levels = levels.sorted(by: { $0.properties.ordinal > $1.properties.ordinal })
+            // Decode the IMDF data. In this case, IMDF data is stored locally in the current bundle.
+//            let imdfDirectory = Bundle.main.resourceURL!.appendingPathComponent("IMDFData")
+            //        do {
+            //            let imdfDecoder = IMDFDecoder()
+            //            venue = try imdfDecoder.decode(unzipDirectory)
+            //        } catch let error {
+            //            print(error)
+            //        }
+            
+            // You might have multiple levels per ordinal. A selected level picker item displays all levels with the same ordinal.
+            if let levelsByOrdinal = self.venue?.levelsByOrdinal {
+                let levels = levelsByOrdinal.mapValues { (levels: [Level]) -> [Level] in
+                    // Choose indoor level over outdoor level
+                    if let level = levels.first(where: { $0.properties.outdoor == false }) {
+                        return [level]
+                    } else {
+                        return [levels.first!]
+                    }
+                }.flatMap({ $0.value })
+                
+                // Sort levels by their ordinal numbers
+                self.levels = levels.sorted(by: { $0.properties.ordinal > $1.properties.ordinal })
+            }
+            
+            // Set the map view's region to enclose the venue
+            if let venue = venue, let venueOverlay = venue.geometry[0] as? MKOverlay {
+                self.mapView.setVisibleMapRect(venueOverlay.boundingMapRect, edgePadding:
+                                                UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: false)
+            }
+            
+            // Display a default level at start, for example a level with ordinal 0
+            showFeaturesForOrdinal(0)
+            
+            // Setup the level picker with the shortName of each level
+            setupLevelPicker()
         }
-        
-        // Set the map view's region to enclose the venue
-        if let venue = venue, let venueOverlay = venue.geometry[0] as? MKOverlay {
-            self.mapView.setVisibleMapRect(venueOverlay.boundingMapRect, edgePadding:
-                UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: false)
-        }
-
-        // Display a default level at start, for example a level with ordinal 0
-        showFeaturesForOrdinal(0)
-        
-        // Setup the level picker with the shortName of each level
-        setupLevelPicker()
     }
     
-    private func loadImdfFileData() {
-        // 파일 매니저 생성
+    @available(iOS 15.0, *)
+    func fetchImdfFileData() async throws -> URL {
         let fileManager: FileManager = FileManager.default
         
-        // 파일 시스템 내 목표 디렉토리 경로 설정
         let documentsPath: URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let directoryPath: URL = documentsPath.appendingPathComponent("IMDFData")
-        
-        let destinationFileUrl = directoryPath.appendingPathComponent("test.imdf")
+        let destinationFileUrl = directoryPath.appendingPathComponent("temp.zip")
         
         do {
-            // 아까 만든 디렉토리 경로에 디렉토리 생성 (폴더가 만들어진다.)
             try fileManager.createDirectory(at: directoryPath, withIntermediateDirectories: false, attributes: nil)
         } catch let e {
             print(e.localizedDescription)
         }
 
         let fileURL = URL(string: "http://localhost:8080/api/v1/venue/1/map")
-        
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfig)
-     
-        let request = URLRequest(url:fileURL!)
-        
-        let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
-            if let tempLocalUrl = tempLocalUrl, error == nil {
-                // Success
-                if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                    print("Successfully downloaded. Status code: \(statusCode)")
-                }
-                
-                do {
-                    try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
-                } catch (let writeError) {
-                    print("Error creating a file \(destinationFileUrl) : \(writeError)")
-                }
-                
-            } else {
-                print("Error took place while downloading a file. Error description: %@", error?.localizedDescription ?? "None");
-            }
-        }
-        task.resume()
+
+        let tempUrlSession = URLSession.shared
+        let (localURL, response) = try await tempUrlSession.download(from: fileURL!)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw FileDownloadError.serverError }
         
         do {
-            let filePath = Bundle.main.url(forResource: destinationFileUrl.absoluteString, withExtension: "zip")
-            if filePath != nil {
-                let unzipDirectory = try Zip.quickUnzipFile(filePath!) // Unzip
-            } else {
-                print("filePath Not Exists")
-            }
+            try FileManager.default.copyItem(at: localURL, to: destinationFileUrl)
+        } catch (let error) {
+            print(error)
         }
-        catch {
-          print("Something went wrong")
+        
+        do {
+            let unzipDirectory = try Zip.quickUnzipFile(destinationFileUrl)
+            return unzipDirectory
+        } catch (let error) {
+            print(error)
+            throw FileDownloadError.unzipFail
         }
     }
     
