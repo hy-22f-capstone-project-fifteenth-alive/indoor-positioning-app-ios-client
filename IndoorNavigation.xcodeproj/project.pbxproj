@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		436217FD2256A4800075E16C /* LocalizedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436217FC2256A4800075E16C /* LocalizedName.swift */; };
 		57BB37002A0A731800C522C6 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 57BB36FF2A0A731800C522C6 /* Zip */; };
 		57BCF5942A0B788F00C6DBC0 /* FileDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */; };
+		57BCF5962A0BDE3B00C6DBC0 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF5952A0BDE3B00C6DBC0 /* APIService.swift */; };
+		57BCF5982A0D03FC00C6DBC0 /* BeaconTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF5972A0D03FC00C6DBC0 /* BeaconTableViewController.swift */; };
 		7E4BF84722160D8B00AE3916 /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BF84622160D8B00AE3916 /* Amenity.swift */; };
 		7E4CC6C82242206000724B06 /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4CC6C72242206000724B06 /* PointAnnotationView.swift */; };
 		7E61CF00215E1FF500EAD172 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */; };
@@ -40,6 +42,8 @@
 		4353A0922228CD9500F2977B /* IMDFData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IMDFData; sourceTree = "<group>"; };
 		436217FC2256A4800075E16C /* LocalizedName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedName.swift; sourceTree = "<group>"; };
 		57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloadError.swift; sourceTree = "<group>"; };
+		57BCF5952A0BDE3B00C6DBC0 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		57BCF5972A0D03FC00C6DBC0 /* BeaconTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconTableViewController.swift; sourceTree = "<group>"; };
 		75E7ED09E5BC9AB9BC056378 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7E4BF84622160D8B00AE3916 /* Amenity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		7E4CC6C72242206000724B06 /* PointAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
@@ -123,8 +127,10 @@
 			isa = PBXGroup;
 			children = (
 				7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */,
+				57BCF5952A0BDE3B00C6DBC0 /* APIService.swift */,
 				7EEBCE8A21AD3B0D00FF4181 /* IMDFDecoder.swift */,
 				7E61CF01215E1FF500EAD172 /* IndoorMapViewController.swift */,
+				57BCF5972A0D03FC00C6DBC0 /* BeaconTableViewController.swift */,
 				57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */,
 				4306A888223825C9005E7E97 /* Styles.swift */,
 				7E4CC6C9224222C400724B06 /* Views */,
@@ -208,8 +214,9 @@
 		7E61CEF4215E1FF500EAD172 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
 					7E61CEFB215E1FF500EAD172 = {
@@ -272,9 +279,11 @@
 				7EEA2CC221CBF3BB005539F2 /* Level.swift in Sources */,
 				7EEBCE8B21AD3B0E00FF4181 /* IMDFDecoder.swift in Sources */,
 				7EEA2CBE21CBF2DF005539F2 /* Unit.swift in Sources */,
+				57BCF5982A0D03FC00C6DBC0 /* BeaconTableViewController.swift in Sources */,
 				57BCF5942A0B788F00C6DBC0 /* FileDownloadError.swift in Sources */,
 				7EEA2CBC21CBF241005539F2 /* Occupant.swift in Sources */,
 				F712C6332262725500F3AFFB /* Feature.swift in Sources */,
+				57BCF5962A0BDE3B00C6DBC0 /* APIService.swift in Sources */,
 				7E61CF00215E1FF500EAD172 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +337,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -390,6 +400,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -426,7 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D9XGSH2D62;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -450,7 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D9XGSH2D62;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(LOCAL_LIBRARY_DIR)/Frameworks",
