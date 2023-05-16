@@ -44,7 +44,7 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
         self.mapView.register(LabelAnnotationView.self, forAnnotationViewWithReuseIdentifier: labelAnnotationViewIdentifier)
         
         Task {
-            let unzipDirectory = try await self.fetchImdfFileData()
+            let unzipDirectory = try await fetchImdfFileData()
             do {
                 let imdfDecoder = IMDFDecoder()
                 venue = try imdfDecoder.decode(unzipDirectory.appendingPathComponent("IMDFData"))
@@ -89,47 +89,14 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
         locationManager.delegate = self // Location Manager 이벤트 핸들러 작성을 위해 CLLocationManagerDelegate 프로토콜 구현체로서 self 객체 할당
         
         let uuid = UUID(uuidString: "fda50693-a4e2-4fb1-afcf-c6eb07647825")!
-        beaconRegion = CLBeaconRegion(uuid: uuid, major: 10001, minor: 19641, identifier: uuid.uuidString)
+        let major = 10001
+        let minor = 19641
+        beaconRegion = CLBeaconRegion(uuid: uuid, major: CLBeaconMajorValue(major), minor: CLBeaconMinorValue(minor), identifier: "\(uuid.uuidString):\(major):\(minor)")
                 
         if CLLocationManager.authorizationStatus() != .authorizedAlways {
             locationManager.requestAlwaysAuthorization()
         } else {
             locationManager.startMonitoring(for: beaconRegion)
-        }
-    }
-    
-    @available(iOS 15.0, *)
-    func fetchImdfFileData() async throws -> URL {
-        let fileManager: FileManager = FileManager.default
-        
-        let documentsPath: URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let directoryPath: URL = documentsPath.appendingPathComponent("IMDFData")
-        let destinationFileUrl = directoryPath.appendingPathComponent("temp.zip")
-        
-        do {
-            try fileManager.createDirectory(at: directoryPath, withIntermediateDirectories: false, attributes: nil)
-        } catch let e {
-            print(e.localizedDescription)
-        }
-
-        let fileURL = URL(string: "http://localhost:8080/api/v1/venue/1/map")
-
-        let tempUrlSession = URLSession.shared
-        let (localURL, response) = try await tempUrlSession.download(from: fileURL!)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw FileDownloadError.serverError }
-        
-        do {
-            try FileManager.default.copyItem(at: localURL, to: destinationFileUrl)
-        } catch (let error) {
-            print(error)
-        }
-        
-        do {
-            let unzipDirectory = try Zip.quickUnzipFile(destinationFileUrl)
-            return unzipDirectory
-        } catch (let error) {
-            print(error)
-            throw FileDownloadError.unzipFail
         }
     }
     
@@ -284,10 +251,15 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         print("Did determine state for region \(region)")
-     
+        let beaconId = region.identifier.split(separator: ":")
+        let major = beaconId[1]
+        let minor = beaconId[2]
+        
         switch state {
         case .inside:
-            postNotification()
+            Task {
+                await postNotification(major: Int(major)!, minor: Int(minor)!)
+            }
 
             print("Device is within the beacon's range")
         case .outside:
@@ -299,7 +271,7 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
     
     // beacon region 진입 이벤트 핸들러
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        postNotification()
+        print(region.identifier)
     }
     
     // beacon region 탈출 이벤트 핸들러
@@ -307,17 +279,25 @@ class IndoorMapViewController: UIViewController, MKMapViewDelegate, LevelPickerD
         print("didExit")
     }
     
-    func postNotification() {
+    func postNotification(major: Int, minor: Int) async {
+        let beaconModel: BeaconModel
+        do {
+            beaconModel = try await getBeaconData(major: major, minor: minor)
+        } catch (let error) {
+            print(error)
+            return
+        }
+        let venueName = beaconModel.venue.name
         let content = UNMutableNotificationContent()
-        content.title = "한양대학교 제3공학관 진입"
+        content.title = "\(venueName) 진입"
         content.body = "앱을 통해 실내 공간 정보를 확인하세요."
         content.sound = UNNotificationSound.default
         
         let request = UNNotificationRequest(identifier: "EntryNotification", content: content, trigger: nil)
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
+        do {
+            try await UNUserNotificationCenter.current().add(request)
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
     

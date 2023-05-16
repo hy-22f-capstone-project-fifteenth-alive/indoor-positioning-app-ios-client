@@ -14,6 +14,8 @@
 		57BCF5942A0B788F00C6DBC0 /* FileDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */; };
 		57BCF5962A0BDE3B00C6DBC0 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF5952A0BDE3B00C6DBC0 /* APIService.swift */; };
 		57BCF5982A0D03FC00C6DBC0 /* BeaconTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF5972A0D03FC00C6DBC0 /* BeaconTableViewController.swift */; };
+		57BCF59B2A13953C00C6DBC0 /* BeaconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF59A2A13953C00C6DBC0 /* BeaconModel.swift */; };
+		57BCF59D2A13957100C6DBC0 /* VenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BCF59C2A13957100C6DBC0 /* VenueModel.swift */; };
 		7E4BF84722160D8B00AE3916 /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BF84622160D8B00AE3916 /* Amenity.swift */; };
 		7E4CC6C82242206000724B06 /* PointAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4CC6C72242206000724B06 /* PointAnnotationView.swift */; };
 		7E61CF00215E1FF500EAD172 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */; };
@@ -44,6 +46,8 @@
 		57BCF5932A0B788F00C6DBC0 /* FileDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloadError.swift; sourceTree = "<group>"; };
 		57BCF5952A0BDE3B00C6DBC0 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		57BCF5972A0D03FC00C6DBC0 /* BeaconTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconTableViewController.swift; sourceTree = "<group>"; };
+		57BCF59A2A13953C00C6DBC0 /* BeaconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconModel.swift; sourceTree = "<group>"; };
+		57BCF59C2A13957100C6DBC0 /* VenueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueModel.swift; sourceTree = "<group>"; };
 		75E7ED09E5BC9AB9BC056378 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		7E4BF84622160D8B00AE3916 /* Amenity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		7E4CC6C72242206000724B06 /* PointAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAnnotationView.swift; sourceTree = "<group>"; };
@@ -92,6 +96,15 @@
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
+		57BCF5992A13952B00C6DBC0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				57BCF59A2A13953C00C6DBC0 /* BeaconModel.swift */,
+				57BCF59C2A13957100C6DBC0 /* VenueModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7E4CC6C9224222C400724B06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +139,7 @@
 		7E61CEFE215E1FF500EAD172 /* IndoorNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				57BCF5992A13952B00C6DBC0 /* Models */,
 				7E61CEFF215E1FF500EAD172 /* AppDelegate.swift */,
 				57BCF5952A0BDE3B00C6DBC0 /* APIService.swift */,
 				7EEBCE8A21AD3B0D00FF4181 /* IMDFDecoder.swift */,
@@ -267,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EEA2CC021CBF370005539F2 /* Opening.swift in Sources */,
+				57BCF59B2A13953C00C6DBC0 /* BeaconModel.swift in Sources */,
 				F70CE090228B5B4D007056C6 /* Anchor.swift in Sources */,
 				436217FD2256A4800075E16C /* LocalizedName.swift in Sources */,
 				F78C77EB228DF74D0017CF2D /* LabelAnnotationView.swift in Sources */,
@@ -275,6 +290,7 @@
 				4306A889223825C9005E7E97 /* Styles.swift in Sources */,
 				7EEA2CB521CA3D87005539F2 /* LevelPickerView.swift in Sources */,
 				7E61CF02215E1FF500EAD172 /* IndoorMapViewController.swift in Sources */,
+				57BCF59D2A13957100C6DBC0 /* VenueModel.swift in Sources */,
 				7E4CC6C82242206000724B06 /* PointAnnotationView.swift in Sources */,
 				7EEA2CC221CBF3BB005539F2 /* Level.swift in Sources */,
 				7EEBCE8B21AD3B0E00FF4181 /* IMDFDecoder.swift in Sources */,
